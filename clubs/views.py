@@ -4,12 +4,13 @@ from django.shortcuts import render, redirect
 from .models import Club
 from django.views.generic import View
 from .forms import ClubForm
+from tags.forms import SearchTagForm
 
 
 
 def my_club(request):
     club, created = Club.objects.get_or_create(president=request.user)
-    return render(request, "club/club.html", {"club": club})
+    return render(request, "club/club.html", {"club": club, "form":SearchTagForm()})
 
 
 
