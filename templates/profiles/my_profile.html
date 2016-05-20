@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class='container'>
+    <h1>test</h1>
+    {% if my_profile.profile.profile_picture %}
+        <img src='{{ my_profile.profile.profile_picture.url }}' class="img-responsive img-rounded" width="300"/>
+    {% endif %}
+
+
+    <form action='{% url "edit_profile" %}'>{% csrf_token %}
+        <input type='submit' value='Edit Profile'>
+    </form>
+</div>
+
+
+
+{% endblock %}
