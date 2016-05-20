@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # from django.conf import settings
 # User = settings.AUTH_USER_MODEL
 from .models import Club
@@ -27,4 +27,12 @@ class EditClub(View):
 
 
     def post(self, request):
-        pass
+        my_club, created = Club.objects.get_or_create(president=request.user)
+        form = self.form(request.POST or None, request.FILES or None, instance=my_club)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.president = request.user
+            instance.save()
+            return redirect("my_club")
+        else:
+            return redirect("edit_club")

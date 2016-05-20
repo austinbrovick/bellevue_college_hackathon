@@ -5,6 +5,18 @@
 
 {% block content %}
 <div class='container'>
+    <div class='row'>
+        <div class='col-sm-6'>
+            {% if club.club_picture %}
+                <img src='{{ club.club_picture.url }}' class="img-responsive img-rounded" width="300"/>
+            {% endif %}
+        </div>
+        <div class='col-sm-6'>
+            <h1>{{ club.president }}</h1>
+            <h3>{{ club.description }}</h3>
+        </div>
+    </div>
+
     <form action='{% url "edit_club" %}'>{% csrf_token %}
         {{ form.as_p }}
         <input type='submit' value='Edit Club' />
