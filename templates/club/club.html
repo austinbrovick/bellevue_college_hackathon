@@ -6,19 +6,23 @@
 {% block content %}
 <div class='container'>
     <div class='row'>
-        <div class='col-sm-4 col-sm-offset-1'>
-            {% if club.club_picture %}
-                <img src='{{ club.club_picture.url }}' class="img-responsive img-rounded" width="300"/>
-            {% endif %}
+        <div class='col-sm-12'>
+            <div class='thumbnail'>
+                {% if club.club_picture %}
+                    <img src='{{ club.club_picture.url }}' class="img-responsive img-rounded"/>
+                {% endif %}
+            </div>
         </div>
-        <div class='col-sm-6'>
+    </div>
+    <div class='row'>
+        <div class='col-sm-8'>
             <h1>{{ club.name }}</h1>
             <h2>{{ club.president }}</h2>
             <h3>{{ club.description }}</h3>
         </div>
     </div>
 
-    <hr>
+    </hr>
 
     <form action='{% url "edit_club" %}'>{% csrf_token %}
         <input type='submit' value='Edit Club' />
@@ -71,7 +75,7 @@
         <div class=''>
             <ul>
             {% for connection in connections %}
-                <a href=''><li class='list-group-item'>
+                <a href='{% url "their_profile" connection.pk %}'><li class='list-group-item'>
                     {{ connection.user.username }}
                     <span class="">
                         <a href=''></a>

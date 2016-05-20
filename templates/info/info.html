@@ -12,14 +12,11 @@
                 <div class='col-sm-12'>
                     <div class='thumbnail'>
                         {% if connection.club_picture %}
-                            <img src='{{ connection.club_picture.url }}' class='img-responsive' />
+                            <a href='{% url "club_profile" connection.pk %}'><img src='{{ connection.club_picture.url }}' class='img-responsive' /></a>
                         {% endif %}
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
-
-
-
 {% endblock %}

@@ -4,6 +4,7 @@ from .models import Profile
 from .forms import ProfileForm
 from tags.models import Tag
 from tags.forms import SearchTagForm
+from django.contrib.auth.decorators import login_required
 
 
 def my_profile(request):
@@ -18,10 +19,10 @@ def my_profile(request):
     return render(request, "profiles/my_profile.html", context)
 
 
-
 class EditProfile(View):
     template_name = "profiles/edit.html"
     form = ProfileForm
+
 
     def get(self, request):
         print("made it to edit page")
@@ -40,3 +41,11 @@ class EditProfile(View):
             return redirect("profile")
         else:
             return redirect("edit_profile")
+
+
+def their_profile(request, pk):
+    x = Profile.objects.get(pk=pk)
+    my_profile = x.user
+    tags = Tag.objects.filter(profile=request.user.profile)
+    return render(request, 'profiles/their_profile.html', {'my_profile':my_profile, 'tags':tags})
+

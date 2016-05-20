@@ -1,18 +1,38 @@
-{% extends "base.html" %}
 
-{% block content %}
+{% load staticfiles %}
+
+
+<html>
+<head>
+    <title>{% block head_title %}Club Spot{% endblock head_title %}   </title>
+    <!-- Latest compiled and minified CSS -->
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+
+</head>
+<body>
 <div class='container'>
     <div class="jumbotron">
       <h1>Welcome to Club Spot</h1>
       <p>This is a website geared for helping Bellevue College students find things that interest them</p>
       <div class='row'>
           <div class='col-sm-3 col-md-offset-3'>
-              <p><a class="btn btn-primary btn-lg" href="" role="button">Club</a></p>
+              <p><a class="btn btn-primary btn-lg" href="{% url 'account_login' %}" role="button">Login</a></p>
           </div>
           <div class='col-sm-3'>
-              <p><a class="btn btn-primary btn-lg" href="#" role="button">Student</a></p>
+              <p><a class="btn btn-primary btn-lg" href="{% url 'account_signup' %}" role="button">Register</a></p>
           </div>
       </div>
     </div>
 </div>
-{% endblock %}
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</body>
+</html>

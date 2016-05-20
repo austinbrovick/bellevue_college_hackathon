@@ -1,33 +1,24 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-
-
-
-
 {% block content %}
 <div class='container'>
     <div class='row'>
-        <div class='col-sm-12'>
-            <div class='thumbnail'>
-                {% if club.club_picture %}
-                    <img src='{{ club.club_picture.url }}' class="img-responsive img-rounded"/>
-                {% endif %}
-            </div>
+        <div class='col-md-5'>
+            {% if my_profile.profile.profile_picture %}
+                <img src='{{ my_profile.profile.profile_picture.url }}' class="img-responsive img-rounded" width="300"/>
+            {% endif %}
+        </div>
+        <div class='col-md-4'>
+            <h2>{{ my_profile.username }}</h2>
+            <h3>{{ my_profile.email }}</h3>
         </div>
     </div>
 
-
-
-
     <div class='row'>
-        <div class='col-sm-6'>
-            <h2>{{ club.name }}</h2>
-            <h4>{{ club.description }}</h4>
-        </div>
-        <div class='col-sm-4'>
-                <h3>Club Tags</h3>
-                <ul>
+        <div class='row'>
+            <div class='col-md-4'>
+                <h3>{{ my_profile.username }}'s Tags</h3>
                     {% for tag in tags %}
                         <li class='list-group-item'>
                             {{ tag.name }}
@@ -37,9 +28,11 @@
                             <!-- <span class="badge"></span> -->
                         </li>
                     {% endfor %}
-                </ul>
+            </div>
         </div>
     </div>
-    </hr>
+
 </div>
+
+
 {% endblock %}
