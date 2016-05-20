@@ -2,13 +2,17 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from .models import Profile
 from .forms import ProfileForm
+from tags.models import Tag
+from tags.forms import SearchTagForm
 
 
 def my_profile(request):
     me = request.user
-    print(me.first_name)
+    tags = Tag.objects.filter(profile=request.user.profile)
     context = {
         "my_profile" : me,
+        'tags' : tags,
+        'form' : SearchTagForm()
     }
     return render(request, "profiles/my_profile.html", context)
 

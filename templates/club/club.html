@@ -12,7 +12,8 @@
             {% endif %}
         </div>
         <div class='col-sm-6'>
-            <h1>{{ club.president }}</h1>
+            <h1>{{ club.name }}</h1>
+            <h2>{{ club.president }}</h2>
             <h3>{{ club.description }}</h3>
         </div>
     </div>
@@ -23,10 +24,46 @@
 
 
     <div class='row'>
-        <form method='post' action=''>{% csrf_token %}
-            {{ form.as_p }}
-            <input type='submit' value='Search'>
-        </form>
+        <h1>Tags</h1>
+        <div class='row'>
+            <div class='col-md-4'>
+                <h3>My Tags</h3>
+                    {% for tag in tags %}
+                        <li class='list-group-item'>
+                            {{ tag.name }}
+                            <span class="">
+                                <a href=''></a>
+                            </span>
+                            <!-- <span class="badge"></span> -->
+                        </li>
+                    {% endfor %}
+            </div>
+
+            <div class='col-md-4'>
+                <div class='row'>
+                    <h3>Find Tags</h3>
+                    <form method='post' action='{% url "find_tags" %}'>{% csrf_token %}
+                        {{ form.as_p }}
+                        <input type='submit' value='Search'>
+                    </form>
+                </div>
+                <div class='row'>
+                <ul class='list-group'>
+                    {% for tag in searched_tags %}
+                        <li class='list-group-item'>
+                            {{ tag.name }}
+                            <span class="">
+                                <a href='{% url "add_tag" tag.pk %}'>Add</a>
+                            </span>
+                            <!-- <span class="badge"></span> -->
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                </div>
+            </div>
+        </div>
+
 
 
     </div>

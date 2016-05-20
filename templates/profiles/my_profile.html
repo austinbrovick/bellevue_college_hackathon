@@ -12,8 +12,53 @@
     <form action='{% url "edit_profile" %}'>{% csrf_token %}
         <input type='submit' value='Edit Profile'>
     </form>
-</div>
 
+
+    <div class='row'>
+        <h1>Tags</h1>
+        <div class='row'>
+            <div class='col-md-4'>
+                <h3>My Tags</h3>
+                    {% for tag in tags %}
+                        <li class='list-group-item'>
+                            {{ tag.name }}
+                            <span class="">
+                                <a href=''></a>
+                            </span>
+                            <!-- <span class="badge"></span> -->
+                        </li>
+                    {% endfor %}
+            </div>
+
+            <div class='col-md-4'>
+                <div class='row'>
+                    <h3>Find Tags</h3>
+                    <form method='post' action='{% url "find_tags_profile" %}'>{% csrf_token %}
+                        {{ form.as_p }}
+                        <input type='submit' value='Search'>
+                    </form>
+                </div>
+                <div class='row'>
+                <ul class='list-group'>
+                    {% for tag in searched_tags %}
+                        <li class='list-group-item'>
+                            {{ tag.name }}
+                            <span class="">
+                                <a href='{% url "add_tag_profile" tag.pk %}'>Add</a>
+                            </span>
+                            <!-- <span class="badge"></span> -->
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
 
 
 {% endblock %}

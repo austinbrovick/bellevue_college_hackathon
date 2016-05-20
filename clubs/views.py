@@ -5,14 +5,14 @@ from .models import Club
 from django.views.generic import View
 from .forms import ClubForm
 from tags.forms import SearchTagForm
+from tags.models import Tag
 
 
 
 def my_club(request):
     club, created = Club.objects.get_or_create(president=request.user)
-    return render(request, "club/club.html", {"club": club, "form":SearchTagForm()})
-
-
+    tags = Tag.objects.filter(club=club)
+    return render(request, "club/club.html", {"club": club, "form":SearchTagForm(), 'tags':tags})
 
 
 class EditClub(View):
@@ -37,3 +37,9 @@ class EditClub(View):
             return redirect("my_club")
         else:
             return redirect("edit_club")
+
+
+def clubs(request):
+    clubs = Club.objects.all()
+    context = {'clubs':clubs}
+    return render(request, "club/clubs.html", context)
