@@ -3,6 +3,18 @@
 
 {% block content %}
 <div class='container'>
-
+    {% for club in clubs %}
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='thumbnail'>
+                    {% if club.club_picture %}
+                        <a href='{% url "club_profile" club.pk %}'><img src='{{ club.club_picture.url }}' class='img-responsive' /></a>
+                    {% else %}
+                        <h1>{{ club.name }}</h1>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 </div>
 {% endblock %}

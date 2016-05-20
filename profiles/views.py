@@ -7,6 +7,7 @@ from tags.forms import SearchTagForm
 
 
 def my_profile(request):
+    my_profile, created = Profile.objects.get_or_create(user=request.user)
     me = request.user
     tags = Tag.objects.filter(profile=request.user.profile)
     context = {

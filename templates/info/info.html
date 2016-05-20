@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block content %}
+    <div class='container'>
+        <h1>Clubs that may be of interest to you</h1>
+
+
+        {% for connection in connections %}
+            <div class='row'>
+                <div class='col-sm-12'>
+                    <div class='thumbnail'>
+                        {% if connection.club_picture %}
+                            <img src='{{ connection.club_picture.url }}' class='img-responsive' />
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+{% endblock %}

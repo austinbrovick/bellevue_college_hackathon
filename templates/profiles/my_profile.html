@@ -3,10 +3,17 @@
 
 {% block content %}
 <div class='container'>
-    <h1>test</h1>
-    {% if my_profile.profile.profile_picture %}
-        <img src='{{ my_profile.profile.profile_picture.url }}' class="img-responsive img-rounded" width="300"/>
-    {% endif %}
+    <div class='row'>
+        <div class='col-md-5'>
+            {% if my_profile.profile.profile_picture %}
+                <img src='{{ my_profile.profile.profile_picture.url }}' class="img-responsive img-rounded" width="300"/>
+            {% endif %}
+        </div>
+        <div class='col-md-4'>
+            <h2>{{ my_profile.username }}</h2>
+            <h3>{{ my_profile.email }}</h3>
+        </div>
+    </div>
 
 
     <form action='{% url "edit_profile" %}'>{% csrf_token %}
@@ -39,23 +46,20 @@
                     </form>
                 </div>
                 <div class='row'>
-                <ul class='list-group'>
-                    {% for tag in searched_tags %}
-                        <li class='list-group-item'>
-                            {{ tag.name }}
-                            <span class="">
-                                <a href='{% url "add_tag_profile" tag.pk %}'>Add</a>
-                            </span>
-                            <!-- <span class="badge"></span> -->
-                        </li>
-                    {% endfor %}
-                </ul>
-
+                    <ul class='list-group'>
+                        {% for tag in searched_tags %}
+                            <li class='list-group-item'>
+                                {{ tag.name }}
+                                <span class="">
+                                    <a href='{% url "add_tag_profile" tag.pk %}'>Add</a>
+                                </span>
+                                <!-- <span class="badge"></span> -->
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
-
-
     </div>
 
 </div>

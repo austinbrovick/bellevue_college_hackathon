@@ -6,13 +6,39 @@ from django.views.generic import View
 from .forms import ClubForm
 from tags.forms import SearchTagForm
 from tags.models import Tag
+from profiles.models import Profile
+from django.http import HttpResponse
 
 
 
 def my_club(request):
+    connections = []
     club, created = Club.objects.get_or_create(president=request.user)
     tags = Tag.objects.filter(club=club)
-    return render(request, "club/club.html", {"club": club, "form":SearchTagForm(), 'tags':tags})
+    profiles = Profile.objects.all()
+
+
+    for tag_from_club in tags:
+        for profile in profiles:
+            for tag_from_user in profile.tags.all():
+                if tag_from_user.name == tag_from_club.name:
+                    connections.append(profile)
+
+    print(connections)
+    unique_connections = []
+
+    for x in connections:
+        status = True
+        for y in unique_connections:
+            if x == y:
+                status = False
+        if status == True:
+            unique_connections.append(x)
+
+    print(unique_connections)
+    return render(request, "club/club.html", {"club": club, "form":SearchTagForm(), 'tags':tags, 'connections':unique_connections})
+
+
 
 
 class EditClub(View):
@@ -43,3 +69,9 @@ def clubs(request):
     clubs = Club.objects.all()
     context = {'clubs':clubs}
     return render(request, "club/clubs.html", context)
+
+
+def club_profile(request, pk):
+    club = Club.objects.get(pk=pk)
+    tags = Tag.objects.filter(club=club)
+    return render(request, 'club/club_page.html', {'club' : club, 'tags':tags})

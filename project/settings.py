@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'profiles',
     'clubs',
     'tags',
+    'info',
+    'home',
 ]
 
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"

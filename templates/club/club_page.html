@@ -3,6 +3,8 @@
 
 
 
+
+
 {% block content %}
 <div class='container'>
     <div class='row'>
@@ -17,19 +19,12 @@
             <h3>{{ club.description }}</h3>
         </div>
     </div>
-
-    <hr>
-
-    <form action='{% url "edit_club" %}'>{% csrf_token %}
-        <input type='submit' value='Edit Club' />
-    </form>
-
+    </hr>
 
     <div class='row'>
-        <h1>Tags</h1>
         <div class='row'>
             <div class='col-md-4'>
-                <h3>My Tags</h3>
+                <h3>Club Tags</h3>
                 <ul>
                     {% for tag in tags %}
                         <li class='list-group-item'>
@@ -45,13 +40,6 @@
 
             <div class='col-md-4'>
                 <div class='row'>
-                    <h3>Find Tags</h3>
-                    <form method='post' action='{% url "find_tags" %}'>{% csrf_token %}
-                        {{ form.as_p }}
-                        <input type='submit' value='Search'>
-                    </form>
-                </div>
-                <div class='row'>
                     <ul class='list-group'>
                         {% for tag in searched_tags %}
                             <li class='list-group-item'>
@@ -64,22 +52,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class='row'>
-        <h3>People who many be interested in your club</h3>
-        <div class=''>
-            <ul>
-            {% for connection in connections %}
-                <a href=''><li class='list-group-item'>
-                    {{ connection.user.username }}
-                    <span class="">
-                        <a href=''></a>
-                    </span>
-                    <!-- <span class="badge"></span> -->
-                </li></a>
-            {% endfor %}
-            </ul>
         </div>
     </div>
 </div>

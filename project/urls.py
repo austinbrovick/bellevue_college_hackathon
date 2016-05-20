@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^profile/', include('profiles.urls')),
     url(r'^clubs/', include('clubs.urls')),
     url(r'^tags/', include('tags.urls')),
+    url(r'^info/', include('info.urls')),
 ]
 
 

@@ -37,7 +37,7 @@ class Profile(models.Model):
     profile_picture = models.ImageField(upload_to=upload_location, null=True, blank=True)
     grade = models.CharField(max_length=30, choices=GRADES, null=True, blank=True)
     major = models.CharField(max_length=30, choices=MAJORS, null=True, blank=True)
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True)
 
 
 
