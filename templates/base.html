@@ -34,10 +34,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="">Home<span class="sr-only">(current)</span></a></li>
+        <li><a href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a></li>
         <li><a href="{% url 'profile' %}">Profile<span class="sr-only">(current)</span></a></li>
         <li><a href="{% url 'clubs' %}">Clubs<span class="sr-only">(current)</span></a></li>
-        <li><a href="{% url 'info' %}">Info<span class="sr-only">(current)</span></a></li>
+        <li><a href="{% url 'info' %}">Connections<span class="sr-only">(current)</span></a></li>
         {% if request.user.profile.club == 1 %}
             <li><a href="{% url 'my_club' %}">My Club<span class="sr-only">(current)</span></a></li>
             <li><a href="{% url 'edit_club' %}">Edit Club<span class="sr-only">(current)</span></a></li>
